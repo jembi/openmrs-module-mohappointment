@@ -5,7 +5,7 @@
 				<tr>
 					<td><b><spring:message code="@MODULE_ID@.general.provider"/></b></td>
 					<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
-					<td><openmrs_tag:userField roles="Provider" formFieldName="provider" initialValue="${param.provider}" /></td>
+					<td><openmrs_tag:userField formFieldName="provider" initialValue="${param.provider}" /></td>
 				</tr>
 				<tr>
 					<td><b><spring:message code="@MODULE_ID@.general.location"/></b></td>

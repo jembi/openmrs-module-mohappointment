@@ -4,7 +4,6 @@
 <openmrs:require privilege="Manage Services and Providers" otherwise="/login.htm" redirect="/module/mohappointment/serviceProvider.form"/>
 
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
 
 <%@ include file="templates/serviceProviderHeader.jsp"%>
 
@@ -12,7 +11,6 @@
 <br/>
 
 <script type="text/javascript">
-	var $j = jQuery.noConflict();
 </script>
 
 <!-- <b class="boxHeader"><spring:message code="@MODULE_ID@.appointment.service.provider.current"/></b> -->
@@ -53,8 +51,8 @@
 </form>
 
 <script>
-	$j(document).ready(function(){
-		$j("#btSave").click(function(){
+	$(document).ready(function(){
+		$("#btSave").click(function(){
 			if(validateFormFields()){
 				if(confirm("<spring:message code='@MODULE_ID@.general.save.confirm'/>"))
 					this.form.submit();
@@ -65,38 +63,38 @@
 	function validateFormFields(){
 		var valid=true;
 		if(document.getElementsByName("provider")[0].value==''){
-			$j("#providerError").html("*");
-			$j("#providerError").addClass("error");
+			$("#providerError").html("*");
+			$("#providerError").addClass("error");
 			valid=false;
 		} else {
-			$j("#providerError").html("");
-			$j("#providerError").removeClass("error");
+			$("#providerError").html("");
+			$("#providerError").removeClass("error");
 		}
 
 		if(document.getElementById("service").value==''){
-			$j("#serviceError").html("*");
-			$j("#serviceError").addClass("error");
+			$("#serviceError").html("*");
+			$("#serviceError").addClass("error");
 			valid=false;
 		} else {
-			$j("#serviceError").html("");
-			$j("#serviceError").removeClass("error");
+			$("#serviceError").html("");
+			$("#serviceError").removeClass("error");
 		}
 
-		if($j("#startDate").val()==''){
-			$j("#startDateError").html("*");
-			$j("#startDateError").addClass("error");
+		if($("#startDate").val()==''){
+			$("#startDateError").html("*");
+			$("#startDateError").addClass("error");
 			valid=false;
 		} else {
-			$j("#startDateError").html("");
-			$j("#startDateError").removeClass("error");
+			$("#startDateError").html("");
+			$("#startDateError").removeClass("error");
 		}
 
 		if(!valid){
-			$j("#errorDiv").html("<spring:message code='@MODULE_ID@.general.fillbeforesubmit'/>");
-			$j("#errorDiv").addClass("error");
+			$("#errorDiv").html("<spring:message code='@MODULE_ID@.general.fillbeforesubmit'/>");
+			$("#errorDiv").addClass("error");
 		} else {
-			$j("#errorDiv").html("");
-			$j("#errorDiv").removeClass("error");
+			$("#errorDiv").html("");
+			$("#errorDiv").removeClass("error");
 		}
 		
 		return valid;
