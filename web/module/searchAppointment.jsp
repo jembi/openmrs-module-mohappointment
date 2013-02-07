@@ -109,7 +109,7 @@
 			height: 220,
 			width: 550,
 			modal: true
-		});	
+		});
 	}
 	
 	function distroyResultDiv(){
