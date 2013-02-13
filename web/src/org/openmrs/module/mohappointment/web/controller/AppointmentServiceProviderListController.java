@@ -42,8 +42,6 @@ public class AppointmentServiceProviderListController extends
 		IAppointmentService ias = Context.getService(IAppointmentService.class);
 		List<ServiceProviders> providers = (List<ServiceProviders>) ias.getServiceProviders();
 		mav.addObject("serviceProviders", providers);
-		log.info("___________________Appointment: SIZE OF Providers is : "
-				+ ias.getServiceProviders().size());
 		mav.addObject("today", Context.getDateFormat().format(new Date()));
 		mav.addObject("creator", Context.getAuthenticatedUser());
 		mav.addObject("reportName",

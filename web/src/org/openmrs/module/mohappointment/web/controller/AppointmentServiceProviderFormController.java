@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.mohappointment.model.ServiceProviders;
@@ -24,6 +26,9 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 public class AppointmentServiceProviderFormController extends
 		ParameterizableViewController {
 
+	/** Logger for this class and subclasses */
+	private final Log log = LogFactory.getLog(getClass());
+	
 	@Override
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -62,6 +67,7 @@ public class AppointmentServiceProviderFormController extends
 				.valueOf(request.getParameter("service"))) : null;
 
 		if (startDate == null || provider == null || service == null) {
+			System.out.println("<<<<<<<<<<<<<<<<<<< INSIDE APPOINTMENT >>>>>>>>>>>>>>>: \n 1. Provider: "+provider +"\n 2. Service: "+service);
 			return false;
 		} else {
 			ServiceProviders sp = new ServiceProviders();
@@ -71,7 +77,7 @@ public class AppointmentServiceProviderFormController extends
 			sp.setVoided(false);
 			sp.setCreatedDate(new Date());
 			sp.setCreator(Context.getAuthenticatedUser());
-
+			System.out.println("<<<<<<<<<<<<<<<<<<< APPOINTMENT >>>>>>>>>>>>>>>: \nSERVICE Provider: "+sp);
 			ias.saveServiceProviders(sp);
 		}
 		return true;
