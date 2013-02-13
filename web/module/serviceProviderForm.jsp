@@ -10,17 +10,14 @@
 <h2><spring:message code="@MODULE_ID@.appointment.service.provider.form"/></h2>
 <br/>
 
-<script type="text/javascript">
-</script>
-
 <!-- <b class="boxHeader"><spring:message code="@MODULE_ID@.appointment.service.provider.current"/></b> -->
-<form action="serviceProvider.form?save=true" method="post" class="box">
-	<div id="errorDiv"></div><br/>
+<form  action="serviceProvider.form?save=true" method="get">
+	<div id="errorDiv"><input type="hidden" name="save" value="true"></div><br/>
 	<table>
 		<tr>
 			<td><b><spring:message code="@MODULE_ID@.general.provider"/></b></td>
 			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
-			<td><openmrs_tag:userField roles="Provider" formFieldName="provider"/></td>
+			<td><openmrs_tag:userField formFieldName="provider"/></td>
 			<td valign="top"><span id="providerError"></span></td>
 		</tr>
 		<tr>
@@ -44,13 +41,13 @@
 		<tr>
 			<td></td>
 			<td></td>
-			<td><input type="button" id="btSave" value="<spring:message code='@MODULE_ID@.general.save'/>"></td>
+			<td><input type="submit" value="<spring:message code='@MODULE_ID@.general.save'  />" id="btSave" /></td>
 			<td></td>
 		</tr>
 	</table>
 </form>
 
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#btSave").click(function(){
 			if(validateFormFields()){
