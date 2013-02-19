@@ -99,6 +99,33 @@
 		<defaultValue>6710</defaultValue>
 		<description>The concept Id representing the Laboratory service at a Facility</description>
 	</globalProperty>
+	
+	<globalProperty>
+		<property>mohappointment.concept.primary_care_service_requested_concept</property>
+		<defaultValue>6702</defaultValue>
+		<description>The concept Id representing the Primary Care service requested</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mohappointment.concept.next_scheduled_visit_concept</property>
+		<defaultValue>5096</defaultValue>
+		<description>The concept Id representing the Next Scheduled visit</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mohappointment.concept.reason_for_visit_concept</property>
+		<defaultValue>6189</defaultValue>
+		<description>The concept Id representing the Reason for visit</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mohappointment.concept.weight_kg_concept</property>
+		<defaultValue>5089</defaultValue>
+		<description>The concept Id representing the Weight expressed in Kg</description>
+	</globalProperty>
+	<globalProperty>
+		<property>mohappointment.concept.cd4_count_concept</property>
+		<defaultValue>5497</defaultValue>
+		<description>The concept Id representing the CD4 count</description>
+	</globalProperty>
+	
 	<globalProperty>
 		<property>mohappointment.link.laboratory_link</property>
 		<defaultValue>/module/laboratorymodule/viewLabOrder.form</defaultValue>

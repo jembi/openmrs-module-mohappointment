@@ -9,6 +9,7 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Encounter;
+import org.openmrs.GlobalProperty;
 import org.openmrs.Obs;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.mohappointment.model.Appointment;
@@ -62,6 +63,10 @@ public class ObsServiceAdvice implements AfterReturningAdvice {
 				.getService(IAppointmentService.class);
 		Obs nextVisitDate = null;
 		Obs reasonForVisit = null;
+		GlobalProperty nextScheduledVisitConceptId = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.next_scheduled_visit_concept");
+		GlobalProperty reasonForVisitConceptId = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.reason_for_visit_concept");
 
 		/**
 		 * Setting up an appointment using Save Obs method advice
@@ -75,14 +80,14 @@ public class ObsServiceAdvice implements AfterReturningAdvice {
 				log.info("__________________>>>>>>>>>>>>>>>>>> GETTING IT AS AN OBS"
 						+ obs.toString());
 
-				if (obs.getConcept().getConceptId() == ConstantValues.NEXT_SCHEDULED_VISIT) {
+				if (obs.getConcept().getConceptId() == Integer.parseInt(nextScheduledVisitConceptId.getPropertyValue())) {
 
 					nextVisitDate = obs;
 					appointmentFound = true;
 					log.info("__________________>>>>>>>>>>>>>>>>>> NEXT_SCHEDULED_VISIT");
 				}
 
-				if (obs.getConcept().getConceptId() == ConstantValues.REASON_FOR_VISIT) {
+				if (obs.getConcept().getConceptId() == Integer.parseInt(reasonForVisitConceptId.getPropertyValue())) {
 
 					reasonForVisit = obs;
 					log.info("__________________>>>>>>>>>>>>>>>>>> REASON_FOR_VISIT");
@@ -156,6 +161,9 @@ public class ObsServiceAdvice implements AfterReturningAdvice {
 			Object[] args) {
 
 		Encounter encounter;
+		GlobalProperty pcServiceRequested = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.primary_care_service_requested_concept");
+		
 		if (method.getName().equals("saveObs")) {
 
 			// Setting the parameter from the ObsService.saveObs method
@@ -166,7 +174,7 @@ public class ObsServiceAdvice implements AfterReturningAdvice {
 			// 1. Getting the Obs associated to the Primary Care Service:
 			if (obs != null) {
 				encounter = obs.getEncounter();
-				if (obs.getConcept().getConceptId() == ConstantValues.PRIMARY_CARE_SERVICE_REQUESTED) {
+				if (obs.getConcept().getConceptId() == Integer.parseInt(pcServiceRequested.getPropertyValue())) {
 
 					if (obs.getValueCoded() != null) {
 						// && !encounterExist

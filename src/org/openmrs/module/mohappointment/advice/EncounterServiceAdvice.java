@@ -20,6 +20,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.directwebremoting.guice.RequestScoped;
 import org.openmrs.Encounter;
+import org.openmrs.GlobalProperty;
 import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
@@ -78,7 +79,10 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 			// method
 			encounter = (Encounter) returnVal;
 
+			GlobalProperty pcServiceRequested = Context.getAdministrationService()
+					.getGlobalPropertyObject("mohappointment.concept.primary_care_service_requested_concept");
 			Appointment appointment = null;
+			
 
 			// 1. Getting the Obs associated to the encounter:
 
@@ -86,7 +90,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 					&& encounter.getEncounterId().intValue() != encounterId)
 				for (Obs obs : encounter.getObs()) {
 
-					if (obs.getConcept().getConceptId() == ConstantValues.PRIMARY_CARE_SERVICE_REQUESTED) {
+					if (obs.getConcept().getConceptId() == Integer.parseInt(pcServiceRequested.getPropertyValue())) {
 
 						// Avoiding to save the Appointment many times
 						if (obs.getValueCoded() != null) {
@@ -157,7 +161,11 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 				.getService(IAppointmentService.class);
 		Obs nextVisitDate = null;
 		Obs reasonForVisit = null;
-
+		GlobalProperty nextScheduledVisit = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.next_scheduled_visit_concept");
+		GlobalProperty reasonForVisitConcept = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.reason_for_visit_concept");
+		
 		/**
 		 * Setting up an appointment using Save Encounter method advice
 		 */
@@ -176,7 +184,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 				if (encounter.getObs() != null)
 					for (Obs obs : encounter.getObs()) {
 
-						if (obs.getConcept().getConceptId() == ConstantValues.NEXT_SCHEDULED_VISIT) {
+						if (obs.getConcept().getConceptId() == Integer.parseInt(nextScheduledVisit.getPropertyValue())) {
 
 							nextVisitDate = obs;
 							appointmentFound = true;
@@ -184,7 +192,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 									.info("__________________>>>>>>>>>>>>>>>>>> NEXT_SCHEDULED_VISIT");
 						}
 
-						if (obs.getConcept().getConceptId() == ConstantValues.REASON_FOR_VISIT) {
+						if (obs.getConcept().getConceptId() == Integer.parseInt(reasonForVisitConcept.getPropertyValue())) {
 
 							reasonForVisit = obs;
 							log

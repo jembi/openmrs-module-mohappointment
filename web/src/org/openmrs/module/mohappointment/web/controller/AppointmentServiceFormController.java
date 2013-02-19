@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.mohappointment.model.Services;
 import org.openmrs.module.mohappointment.service.IAppointmentService;
@@ -27,11 +28,13 @@ public class AppointmentServiceFormController extends
 	protected ModelAndView handleRequestInternal(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		GlobalProperty pcServiceRequested = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.primary_care_service_requested_concept");
 		mav
 				.addObject(
 						"medicalServices",
 						AppointmentUtil
-								.createConceptCodedOptions(ConstantValues.PRIMARY_CARE_SERVICE_REQUESTED));
+								.createConceptCodedOptions(Integer.parseInt(pcServiceRequested.getPropertyValue())));
 		mav.setViewName(getViewName());
 
 		if (request.getParameter("save") != null) {

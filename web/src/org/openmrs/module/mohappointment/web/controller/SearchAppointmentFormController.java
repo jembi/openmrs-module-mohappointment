@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.mohappointment.model.AppointmentView;
 import org.openmrs.module.mohappointment.service.IAppointmentService;
@@ -49,6 +50,8 @@ public class SearchAppointmentFormController extends
 		mav.setViewName(getViewName());
 
 		IAppointmentService ias = Context.getService(IAppointmentService.class);
+		GlobalProperty reasonForVisitConcept = Context.getAdministrationService()
+				.getGlobalPropertyObject("mohappointment.concept.reason_for_visit_concept");
 
 		List<AppointmentView> appointments = (request.getParameter("patient") == null) ? null
 				: getAppointments(request, mav);
@@ -61,7 +64,7 @@ public class SearchAppointmentFormController extends
 		mav.addObject("appointments", appointments);
 
 		mav.addObject("reasonForAppointmentOptions", AppointmentUtil
-				.createConceptCodedOptions(ConstantValues.REASON_FOR_VISIT));
+				.createConceptCodedOptions(Integer.parseInt(reasonForVisitConcept.getPropertyValue())));
 		mav.addObject("appointmentStates", ias.getAppointmentStates());
 		mav.addObject("areasToSee", ias.getServices());
 		mav.addObject("today", Context.getDateFormat().format(new Date()));
