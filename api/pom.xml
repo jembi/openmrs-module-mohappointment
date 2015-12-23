@@ -6,7 +6,6 @@
 		<artifactId>mohappointment</artifactId>
 		<version>0.1.9-SNAPSHOT</version>
 	</parent>
-	<groupId>org.openmrs.module</groupId>
 	<artifactId>mohappointment-api</artifactId>
 	<packaging>jar</packaging>
 	<name>Appointment Management API</name>
@@ -20,7 +19,16 @@
 			<artifactId>library-name</artifactId>
 		</dependency>
 		-->
-		
+		<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>3.9</version>
+			</dependency>
+			<dependency>
+				<groupId>com.itextpdf</groupId>
+				<artifactId>itextpdf</artifactId>
+				<version>5.0.6</version>
+			</dependency>
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>

@@ -6,7 +6,6 @@
 		<artifactId>mohappointment</artifactId>
 		<version>0.1.9-SNAPSHOT</version>
 	</parent>
-	<groupId>org.openmrs.module</groupId>
 	<artifactId>mohappointment-omod</artifactId>
 	<packaging>jar</packaging>
 	<name>Appointment Management OMOD</name>

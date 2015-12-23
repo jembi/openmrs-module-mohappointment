@@ -80,7 +80,6 @@ lib-common/tests-openmrs-api-1.6.2.12911-dev.jar
 				<scope>compile</scope>
 			</dependency>
 			-->
-			
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
