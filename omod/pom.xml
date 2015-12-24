@@ -28,11 +28,6 @@
 			<artifactId>openmrs-web</artifactId>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>org.openmrs.test</groupId>
-			<artifactId>openmrs-test</artifactId>
-			<type>jar</type>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -93,13 +88,6 @@
 				<artifactId>maven-openmrs-plugin</artifactId>
 				<extensions>true</extensions>
 				<executions>
-					<execution>
-						<id>init</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>initialize-module</goal>
-						</goals>
-					</execution>
 					<execution>
 						<id>pack</id>
 						<phase>package</phase>
