@@ -192,7 +192,11 @@
 	<!-- /Internationalization -->
 	
 	<mappingFiles>
-		${omodHbmConfig}
+		Appointment.hbm.xml
+		AppointmentState.hbm.xml
+		ChangedAppointment.hbm.xml
+		ServiceProviders.hbm.xml
+		Services.hbm.xml
 	</mappingFiles>
 	
 </module>
