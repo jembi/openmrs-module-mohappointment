@@ -19,17 +19,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import javax.management.Query;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.Concept;
 import org.openmrs.Person;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.db.hibernate.DbSession;
+import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.openmrs.module.mohappointment.db.AppointmentDAO;
 import org.openmrs.module.mohappointment.model.Appointment;
 import org.openmrs.module.mohappointment.model.AppointmentState;
@@ -46,7 +43,7 @@ import org.openmrs.module.mohappointment.singletonpattern.AppointmentList;
 @SuppressWarnings("unchecked")
 public class HibernateAppointmentDAO implements AppointmentDAO {
 
-	private SessionFactory sessionFactory;
+	private DbSessionFactory sessionFactory;
 
 	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
@@ -55,14 +52,14 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 * @param sessionFactory
 	 *            the sessionFactory to set
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
+	public void setSessionFactory(DbSessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	/**
 	 * @return the sessionFactory
 	 */
-	public SessionFactory getSessionFactory() {
+	public DbSessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
@@ -73,7 +70,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	@Override
 	public Collection<Appointment> getAllAppointments() {
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		Collection<Appointment> appointments = session.createCriteria(
 				Appointment.class).list();
@@ -90,7 +87,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	public Integer lastAppointmentId() {
 		Integer lastId = 0;
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		lastId = (Integer) session
 				.createSQLQuery(
 						"SELECT appointment_id FROM moh_appointment ORDER BY appointment_id DESC LIMIT 1;")
@@ -104,7 +101,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public void saveAppointment(Appointment appointment) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(appointment);
 	}
 
@@ -113,13 +110,13 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public void updateAppointment(Appointment appointment) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(appointment);
 	}
 
 	@Override
 	public void updateState(Appointment appointment, Integer stateId) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		session.createSQLQuery(
 				"UPDATE moh_appointment SET appointment_state_id = " + stateId
 						+ " WHERE appointment_id = "
@@ -141,7 +138,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	@Override
 	public void cancelAppointment(Appointment appointment) {
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		appointment.setVoided(true);
 		session.update(appointment);
 	}
@@ -153,7 +150,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	@Override
 	public Appointment getAppointmentById(int appointmentId) {
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		Appointment appointment = (Appointment) session.load(Appointment.class,
 				appointmentId);
@@ -168,7 +165,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	@Override
 	public List<Integer> getAppointmentIdsByMulti(Object[] conditions, int limit) {
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		List<Integer> appointmentIds;
 
 		StringBuilder combinedSearch = new StringBuilder("");
@@ -270,7 +267,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	@Override
 	public void loadAllAppointments() {
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		Collection<Appointment> appointments = session
 				.createSQLQuery(
 						"select app.* from moh_appointment app where voided = false;")
@@ -297,7 +294,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Collection<AppointmentState> getAppointmentStates() {
-		Session session = getSessionFactory().getCurrentSession();
+		DbSession session = getSessionFactory().getCurrentSession();
 		List<AppointmentState> states = session.createCriteria(
 				AppointmentState.class).list();
 		return states;
@@ -311,7 +308,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public AppointmentState getAppointmentStatesByName(String name) {
-		Session session = getSessionFactory().getCurrentSession();
+		DbSession session = getSessionFactory().getCurrentSession();
 
 		Object[] appState = (Object[]) session
 				.createSQLQuery(
@@ -338,7 +335,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public void saveService(Services service) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		session.save(service);
 	}
 
@@ -351,7 +348,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public void saveServiceProviders(ServiceProviders serviceProvider) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(serviceProvider);
 	}
 
@@ -388,7 +385,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Collection<Integer> getPersonsByService(Services service) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		Collection<Integer> providers = session.createSQLQuery(
 				"SELECT provider FROM moh_appointment_service_providers WHERE service = "
@@ -406,7 +403,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Services getServiceByProvider(Person provider) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		if (provider != null) {
 			ServiceProviders sp = (ServiceProviders) session
@@ -430,7 +427,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Services getServiceById(Integer serviceId) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 	
 		Services services = (Services) session.load(Services.class, serviceId);
 
@@ -439,7 +436,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	
 	@Override
 	public ServiceProviders getServiceProviderById(int serviceProviderId) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		ServiceProviders serviceProvider = (ServiceProviders) session.load(ServiceProviders.class, serviceProviderId);
 
@@ -451,7 +448,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Services getServiceByConcept(Concept concept) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		Services service = (Services) session.createCriteria(Services.class)
 				.add(Restrictions.eq("concept", concept)).uniqueResult();
@@ -467,7 +464,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Collection<ServiceProviders> getServiceProviders() {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		// Collection<IServiceProviders> serviceProviders = session
 		// .createSQLQuery(
@@ -486,7 +483,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Collection<Services> getServicesByProvider(Person provider) {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 		List<Services> services = new ArrayList<Services>();
 
 		if (provider != null) {
@@ -520,7 +517,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 	 */
 	@Override
 	public Collection<Services> getServices() {
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		// Collection<Services> services = session.createSQLQuery(
 		// "SELECT * FROM service").list();
@@ -561,7 +558,7 @@ public class HibernateAppointmentDAO implements AppointmentDAO {
 		 * return personList;
 		 * */
 
-		Session session = sessionFactory.getCurrentSession();
+		DbSession session = sessionFactory.getCurrentSession();
 
 		List<Integer> appointmentIds = session.createSQLQuery(
 				"SELECT appointment_id FROM moh_appointment WHERE appointment_id = "
