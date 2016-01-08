@@ -7,32 +7,32 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!-- END of "TAGLIB import" -->
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/appointment.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/listing.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/appointment.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/listing.css" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.bigframe.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.core.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.dialog.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.draggable.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.resizable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery-1.3.2.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery.bigframe.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.core.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.dialog.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.draggable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.resizable.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/ui.all.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/demo.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/ui.all.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/demo.css" />
 
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 
-<h2 style="display: inline;"><spring:message code="@MODULE_ID@.appointment"/></h2> : <span class="boldTitle"><spring:message code="@MODULE_ID@.appointment.today"/></span>
+<h2 style="display: inline;"><spring:message code="mohappointment.appointment"/></h2> : <span class="boldTitle"><spring:message code="mohappointment.appointment.today"/></span>
 <br/><br/>
 
 <div class="searchParameterBox">
 	<table>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.provider"/></b></td>
+			<td><b><spring:message code="mohappointment.general.provider"/></b></td>
 			<td> : ${authenticatedUser.personName}</td>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;<b><spring:message code="@MODULE_ID@.general.location"/></b></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;<b><spring:message code="mohappointment.general.location"/></b></td>
 			<td> : ${authenticatedUserLoc}</td>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;<b><spring:message code="@MODULE_ID@.general.appointmentdate"/></b></td>
+			<td>&nbsp;&nbsp;&nbsp;&nbsp;<b><spring:message code="mohappointment.general.appointmentdate"/></b></td>
 			<td> : <fmt:formatDate value="${todayDate}" pattern="dd-MMM-yyyy" /></td>
 		</tr>
 	</table>
@@ -43,7 +43,7 @@
 <div class="searchParameterBox" style="display: ${display_filter};">
 	<table>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.filter_message"/></b></td>
+			<td><b><spring:message code="mohappointment.general.filter_message"/></b></td>
 			<td>
 				<select name="services_by_provider">
 					<option value="">--</option>
@@ -61,7 +61,7 @@
 <div style="searchParameterBox">
 	<div class="list_container" style="width: 99%">
 		<div class="list_title">
-			<div class="list_title_msg"><spring:message code="@MODULE_ID@.state.waiting"/></div>
+			<div class="list_title_msg"><spring:message code="mohappointment.state.waiting"/></div>
 			<div class="list_title_bts">
 				
 			</div>
@@ -69,16 +69,16 @@
 		</div>
 		<table class="list_data">
 			<tr>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.number"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.identifier"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.names"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.gender"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.reasonofappointment"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.number"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.identifier"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.names"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.gender"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.reasonofappointment"/></th>
 				<th class="columnHeader"></th>
 			</tr>
 			<c:if test="${empty waitingAppointments}">
 				<tr>
-					<td colspan="5" style="text-align: center;"><spring:message code="@MODULE_ID@.general.empty"/></td>
+					<td colspan="5" style="text-align: center;"><spring:message code="mohappointment.general.empty"/></td>
 				</tr>
 			</c:if>
 			<c:forEach items="${waitingAppointments}" var="wAppointment" varStatus="status">
@@ -95,7 +95,7 @@
 					
 					<td class="rowValue ${status.count%2!=0?'even':''}">${(wAppointment.patient.gender=='M')?'<img src="../../images/male.gif"/>':'<img src="../../images/female.gif"/>'}</td>
 					<td class="rowValue ${status.count%2!=0?'even':''}">${wAppointment.service.concept.name.name}</td>	
-					<td class="rowValue ${status.count%2!=0?'even':''}"><input onclick="showResumeDialog('${wAppointment.patient.patientId}');" type="button" value="<spring:message code="@MODULE_ID@.general.viewpatientsummary"/>"/></td>					
+					<td class="rowValue ${status.count%2!=0?'even':''}"><input onclick="showResumeDialog('${wAppointment.patient.patientId}');" type="button" value="<spring:message code="mohappointment.general.viewpatientsummary"/>"/></td>					
 				</tr>
 			</c:forEach>
 		</table>
@@ -113,7 +113,7 @@
 <div style="searchParameterBox">
 	<div class="list_container" style="width: 99%">
 		<div class="list_title">
-			<div class="list_title_msg"><spring:message code="@MODULE_ID@.state.upcoming"/></div>
+			<div class="list_title_msg"><spring:message code="mohappointment.state.upcoming"/></div>
 			<div class="list_title_bts">
 			
 				
@@ -123,16 +123,16 @@
 		</div>
 		<table class="list_data">
 			<tr>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.number"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.identifier"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.names"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.gender"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.appointmentdate"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.reasonofappointment"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.number"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.identifier"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.names"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.gender"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.appointmentdate"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.reasonofappointment"/></th>
 			</tr>
 			<c:if test="${empty upcomingAppointments}">
 				<tr>
-					<td colspan="4" style="text-align: center;"><spring:message code="@MODULE_ID@.general.empty"/></td>
+					<td colspan="4" style="text-align: center;"><spring:message code="mohappointment.general.empty"/></td>
 				</tr>
 			</c:if>
 			<c:forEach items="${upcomingAppointments}" var="uAppointment" varStatus="status">
@@ -168,7 +168,7 @@
 	}
 	
 	function showDialog(pId){
-		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='@MODULE_ID@.general.patientsummary'/>'><p><div id='result'>"+pId+"</div></p></div>");
+		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='mohappointment.general.patientsummary'/>'><p><div id='result'>"+pId+"</div></p></div>");
 		
 		$("#dialog").dialog({
 			zIndex: 980,

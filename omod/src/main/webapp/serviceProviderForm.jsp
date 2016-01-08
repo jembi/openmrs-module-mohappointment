@@ -7,22 +7,22 @@
 
 <%@ include file="templates/serviceProviderHeader.jsp"%>
 
-<h2><spring:message code="@MODULE_ID@.appointment.service.provider.form"/></h2>
+<h2><spring:message code="mohappointment.appointment.service.provider.form"/></h2>
 <br/>
 
-<!-- <b class="boxHeader"><spring:message code="@MODULE_ID@.appointment.service.provider.current"/></b> -->
+<!-- <b class="boxHeader"><spring:message code="mohappointment.appointment.service.provider.current"/></b> -->
 <form  action="serviceProvider.form?save=true" method="get">
 	<div id="errorDiv"><input type="hidden" name="save" value="true"></div><br/>
 	<table>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.provider"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.provider"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><openmrs_tag:userField formFieldName="provider"/></td>
 			<td valign="top"><span id="providerError"></span></td>
 		</tr>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.service"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.service"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><select name="service" id="service">
 					<option value="">--</option>
 					<c:forEach items="${services}" var="service">
@@ -33,15 +33,15 @@
 			<td valign="top"><span id="serviceError"></span></td>
 		</tr>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.startdate"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.startdate"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><input type="text" name="startDate" id="startDate" size="11" onclick="showCalendar(this);"/></td>
 			<td valign="top"><span id="startDateError"></span></td>
 		</tr>
 		<tr>
 			<td></td>
 			<td></td>
-			<td><input type="submit" value="<spring:message code='@MODULE_ID@.general.save'  />" id="btSave" /></td>
+			<td><input type="submit" value="<spring:message code='mohappointment.general.save'  />" id="btSave" /></td>
 			<td></td>
 		</tr>
 	</table>
@@ -51,7 +51,7 @@
 	$(document).ready(function(){
 		$("#btSave").click(function(){
 			if(validateFormFields()){
-				if(confirm("<spring:message code='@MODULE_ID@.general.save.confirm'/>"))
+				if(confirm("<spring:message code='mohappointment.general.save.confirm'/>"))
 					this.form.submit();
 			}
 		});
@@ -87,7 +87,7 @@
 		}
 
 		if(!valid){
-			$("#errorDiv").html("<spring:message code='@MODULE_ID@.general.fillbeforesubmit'/>");
+			$("#errorDiv").html("<spring:message code='mohappointment.general.fillbeforesubmit'/>");
 			$("#errorDiv").addClass("error");
 		} else {
 			$("#errorDiv").html("");

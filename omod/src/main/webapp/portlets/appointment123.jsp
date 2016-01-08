@@ -2,16 +2,16 @@
 
 <openmrs:require privilege="Patient Dashboard - View Appointments Section" otherwise="/login.htm" redirect="/patientDashboard.form?patientId=${patientId}"/>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/listing.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/listing.css" />
 
 <div class="searchParameterBox box">
 	<div class="list_container" style="width: 99%">
 		<div class="list_title">
-			<div class="list_title_msg"><spring:message code="@MODULE_ID@.appointment.patient"/></div>
+			<div class="list_title_msg"><spring:message code="mohappointment.appointment.patient"/></div>
 			<div class="list_title_bts">
 			
 				<!-- <form style="display: inline;" action="#" method="post">
-					<input type="submit" class="list_exportBt" value="<spring:message code="@MODULE_ID@.general.export"/>"/>
+					<input type="submit" class="list_exportBt" value="<spring:message code="mohappointment.general.export"/>"/>
 				</form> -->	
 					
 			</div>
@@ -19,18 +19,18 @@
 		</div>
 		<table class="list_data">
 			<tr>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.appointmentdate"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.number"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.provider"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.reasonofappointment"/></th>
-				<!-- <th class="columnHeader"><spring:message code="@MODULE_ID@.general.clinicalareatosee"/></th> -->
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.location"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.state"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.appointmentdate"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.number"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.provider"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.reasonofappointment"/></th>
+				<!-- <th class="columnHeader"><spring:message code="mohappointment.general.clinicalareatosee"/></th> -->
+				<th class="columnHeader"><spring:message code="mohappointment.general.location"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.state"/></th>
 				<th class="columnHeader"></th>
 			</tr>
 			<c:if test="${empty appointments}">
 				<tr>
-					<td colspan="7" style="text-align: center;"><spring:message code="@MODULE_ID@.general.empty"/></td>
+					<td colspan="7" style="text-align: center;"><spring:message code="mohappointment.general.empty"/></td>
 				</tr>
 			</c:if>
 			<c:set value="0" var="index"/>
@@ -53,8 +53,8 @@
 					<td class="rowValue ${status.count%2!=0?'even':''}">${appointment.appointmentState.description}</td>
 					<td class="rowValue ${status.count%2!=0?'even':''}">
 					<a href="<openmrs:contextPath/>/patientDashboard.form?patientId=${appointment.patient.patientId}&attended=true&appointmentId=${appointment.appointmentId}">
-					<spring:message code="@MODULE_ID@.general.attended"/></a> &nbsp;
-					<a href="<openmrs:contextPath/>/patientDashboard.form?patientId=${appointment.patient.patientId}&cancel=true&appointmentId=${appointment.appointmentId}"><spring:message code="@MODULE_ID@.general.cancel"/></a></td>
+					<spring:message code="mohappointment.general.attended"/></a> &nbsp;
+					<a href="<openmrs:contextPath/>/patientDashboard.form?patientId=${appointment.patient.patientId}&cancel=true&appointmentId=${appointment.appointmentId}"><spring:message code="mohappointment.general.cancel"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>

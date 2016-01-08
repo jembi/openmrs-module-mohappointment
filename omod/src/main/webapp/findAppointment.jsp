@@ -5,16 +5,16 @@
 
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.bigframe.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.core.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.dialog.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.draggable.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.resizable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery.bigframe.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.core.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.dialog.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.draggable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.resizable.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/ui.all.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/demo.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/ui.all.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/demo.css" />
 
-<h2><spring:message code="@MODULE_ID@.appointment.find"/></h2>
+<h2><spring:message code="mohappointment.appointment.find"/></h2>
 
 <script src='<%= request.getContextPath()%>/dwr/interface/MOH_Appointment_DWRUtil.js'></script>
 
@@ -63,7 +63,7 @@
 	
 	function showDialog(appointmentId,ptName,provName,appDate,reason,bt){
 		initializeAppointment(appointmentId,ptName,provName,appDate,reason,bt);
-		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='@MODULE_ID@.appointment.state.change'/>'><p><div id='result'>"+$('#dlgCtnt').html()+"</div></p></div>");
+		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='mohappointment.appointment.state.change'/>'><p><div id='result'>"+$('#dlgCtnt').html()+"</div></p></div>");
 		$("#dialog").dialog({
 			zIndex: 980,
 			bgiframe: true,
@@ -74,7 +74,7 @@
 	}
 </script>
 
-<b class="boxHeader"><spring:message code="@MODULE_ID@.appointment.find"/></b>
+<b class="boxHeader"><spring:message code="mohappointment.appointment.find"/></b>
 <div class="box">
 	<table>
 		<tr>

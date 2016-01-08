@@ -3,21 +3,21 @@
 
 <openmrs:require privilege="Search Appointments" otherwise="/login.htm" redirect="/module/mohappointment/findAppointment.form"/>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/appointment.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/listing.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/appointment.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/listing.css" />
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.bigframe.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.core.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.dialog.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.draggable.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.resizable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery.bigframe.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.core.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.dialog.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.draggable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.resizable.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/ui.all.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/demo.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/ui.all.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/demo.css" />
 
 
-<h2 style="display: inline;"><spring:message code="@MODULE_ID@.appointment"/></h2> : <span class="boldTitle"><spring:message code="@MODULE_ID@.search.title"/></span>
+<h2 style="display: inline;"><spring:message code="mohappointment.appointment"/></h2> : <span class="boldTitle"><spring:message code="mohappointment.search.title"/></span>
 <br/><br/>
 
 <%@ include file="templates/searchParameters.jsp"%>
@@ -25,11 +25,11 @@
 <div class="searchParameterBox box">
 	<div class="list_container" style="width: 99%">
 		<div class="list_title">
-			<div class="list_title_msg"><spring:message code="@MODULE_ID@.search.result"/></div>
+			<div class="list_title_msg"><spring:message code="mohappointment.search.result"/></div>
 			<div class="list_title_bts">
 			
 				<form style="display: inline;" action="#" method="post">
-					<input onclick="showExportDialog();" type="button" class="list_exportBt" value="<spring:message code="@MODULE_ID@.general.export"/>"/>
+					<input onclick="showExportDialog();" type="button" class="list_exportBt" value="<spring:message code="mohappointment.general.export"/>"/>
 				</form>	
 					
 			</div>
@@ -37,19 +37,19 @@
 		</div>
 		<table class="list_data">
 			<tr>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.appointmentdate"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.number"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.identifier"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.names"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.provider"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.reasonofappointment"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.clinicalareatosee"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.location"/></th>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.state"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.appointmentdate"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.number"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.identifier"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.names"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.provider"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.reasonofappointment"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.clinicalareatosee"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.location"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.state"/></th>
 			</tr>
 			<c:if test="${empty appointments}">
 				<tr>
-					<td colspan="9" style="text-align: center;"><spring:message code="@MODULE_ID@.general.empty"/></td>
+					<td colspan="9" style="text-align: center;"><spring:message code="mohappointment.general.empty"/></td>
 				</tr>
 			</c:if>
 			<c:set value="0" var="index"/>
@@ -102,7 +102,7 @@
 	}
 	
 	function showDialog(){
-		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='@MODULE_ID@.export.data'/>'><p><div id='result'>"+$('#dlgCtnt').html()+"</div></p></div>");
+		$("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='mohappointment.export.data'/>'><p><div id='result'>"+$('#dlgCtnt').html()+"</div></p></div>");
 		$("#dialog").dialog({
 			zIndex: 980,
 			bgiframe: true,

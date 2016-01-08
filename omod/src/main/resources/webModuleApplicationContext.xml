@@ -14,16 +14,16 @@
     	<property name="mappings">
             <props>
             	<prop key="**/appointment.portlet">appointmentPortletController</prop>
-	           	<prop key="module/@MODULE_ID@/patientSummary.form">appointmentPatientSummaryFormController</prop>
-	           	<prop key="module/@MODULE_ID@/advancedSearch.form">searchAppointmentFormController</prop>
-	           	<prop key="module/@MODULE_ID@/providerDashboard.form">providerAppointmentDashboardFormController</prop>
-	           	<prop key="module/@MODULE_ID@/serviceProvider.list">serviceProviderListController</prop>
-	           	<prop key="module/@MODULE_ID@/editServiceProvider.form">appointmentEditServiceProviderController</prop>
-	           	<prop key="module/@MODULE_ID@/editService.form">appointmentEditServiceController</prop>
-	           	<prop key="module/@MODULE_ID@/serviceProvider.form">serviceProviderFormController</prop>
-	           	<prop key="module/@MODULE_ID@/service.list">serviceListController</prop>
-	           	<prop key="module/@MODULE_ID@/service.form">serviceFormController</prop>
-	           	<prop key="module/@MODULE_ID@/findAppointment.form">findAppointmentFormController</prop>
+	           	<prop key="module/mohappointment/patientSummary.form">appointmentPatientSummaryFormController</prop>
+	           	<prop key="module/mohappointment/advancedSearch.form">searchAppointmentFormController</prop>
+	           	<prop key="module/mohappointment/providerDashboard.form">providerAppointmentDashboardFormController</prop>
+	           	<prop key="module/mohappointment/serviceProvider.list">serviceProviderListController</prop>
+	           	<prop key="module/mohappointment/editServiceProvider.form">appointmentEditServiceProviderController</prop>
+	           	<prop key="module/mohappointment/editService.form">appointmentEditServiceController</prop>
+	           	<prop key="module/mohappointment/serviceProvider.form">serviceProviderFormController</prop>
+	           	<prop key="module/mohappointment/service.list">serviceListController</prop>
+	           	<prop key="module/mohappointment/service.form">serviceFormController</prop>
+	           	<prop key="module/mohappointment/findAppointment.form">findAppointmentFormController</prop>
 	    	</props>
 		</property>
     </bean>
@@ -33,43 +33,43 @@
     <bean id="appointmentPortletController" class="@MODULE_PACKAGE@.web.controller.AppointmentDashboardPortletController" />
 	
     <bean id="findAppointmentFormController" class="@MODULE_PACKAGE@.web.controller.FindAppointmentController">
-		<property name="viewName"><value>/module/@MODULE_ID@/findAppointment</value></property>
+		<property name="viewName"><value>/module/mohappointment/findAppointment</value></property>
     </bean>
 	
     <bean id="serviceFormController" class="@MODULE_PACKAGE@.web.controller.AppointmentServiceFormController">
-		<property name="viewName"><value>/module/@MODULE_ID@/serviceForm</value></property>
+		<property name="viewName"><value>/module/mohappointment/serviceForm</value></property>
     </bean>
 	 
     <bean id="serviceListController" class="@MODULE_PACKAGE@.web.controller.AppointmentServiceListController">
-		<property name="viewName"><value>/module/@MODULE_ID@/serviceList</value></property>
+		<property name="viewName"><value>/module/mohappointment/serviceList</value></property>
     </bean>
 	
     <bean id="serviceProviderFormController" class="@MODULE_PACKAGE@.web.controller.AppointmentServiceProviderFormController">
-		<property name="viewName"><value>/module/@MODULE_ID@/serviceProviderForm</value></property>
+		<property name="viewName"><value>/module/mohappointment/serviceProviderForm</value></property>
     </bean>
 	 
     <bean id="serviceProviderListController" class="@MODULE_PACKAGE@.web.controller.AppointmentServiceProviderListController">
-		<property name="viewName"><value>/module/@MODULE_ID@/serviceProviderList</value></property>
+		<property name="viewName"><value>/module/mohappointment/serviceProviderList</value></property>
     </bean>
 	 
     <bean id="appointmentEditServiceProviderController" class="@MODULE_PACKAGE@.web.controller.AppointmentEditServiceProviderController">
-		<property name="viewName"><value>/module/@MODULE_ID@/editProviderService</value></property>
+		<property name="viewName"><value>/module/mohappointment/editProviderService</value></property>
     </bean>
 	 
     <bean id="appointmentEditServiceController" class="@MODULE_PACKAGE@.web.controller.AppointmentEditServiceController">
-		<property name="viewName"><value>/module/@MODULE_ID@/editService</value></property>
+		<property name="viewName"><value>/module/mohappointment/editService</value></property>
     </bean>
 	
     <bean id="appointmentPatientSummaryFormController" class="@MODULE_PACKAGE@.web.controller.AppointmentPatientSummaryFormController">
-		<property name="viewName"><value>/module/@MODULE_ID@/patientSummary</value></property>
+		<property name="viewName"><value>/module/mohappointment/patientSummary</value></property>
     </bean>
 	
     <bean id="searchAppointmentFormController" class="@MODULE_PACKAGE@.web.controller.SearchAppointmentFormController">
-		<property name="viewName"><value>/module/@MODULE_ID@/searchAppointment</value></property>
+		<property name="viewName"><value>/module/mohappointment/searchAppointment</value></property>
     </bean>
 	
     <bean id="providerAppointmentDashboardFormController" class="@MODULE_PACKAGE@.web.controller.AppointmentDashboardByProviderFormController">
-		<property name="viewName"><value>/module/@MODULE_ID@/providerAppointmentDashboardForm</value></property>
+		<property name="viewName"><value>/module/mohappointment/providerAppointmentDashboardForm</value></property>
     </bean>
 	
     <!-- /Controllers -->

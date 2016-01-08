@@ -1,19 +1,19 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <%@ include file="/WEB-INF/template/header.jsp"%>
 <openmrs:require privilege="Manage Services and Providers" otherwise="/login.htm" redirect="/module/mohappointment/service.list"/>
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/appointment.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/listing.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/appointment.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/listing.css" />
 <openmrs:htmlInclude file="/scripts/calendar/calendar.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery-1.3.2.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/jquery.bigframe.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.core.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.dialog.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.draggable.js" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/scripts/ui/ui.resizable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery-1.3.2.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/jquery.bigframe.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.core.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.dialog.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.draggable.js" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/scripts/ui/ui.resizable.js" />
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/ui.all.css" />
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/theme/demo.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/ui.all.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/theme/demo.css" />
 
 <script type="text/javascript">
 		var $j = jQuery.noConflict();
@@ -22,7 +22,7 @@
 		}
 		
 		function showDialog(){
-			$j("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='@MODULE_ID@.export.data'/>'><p><div id='result'>"+$j('#dlgCtnt').html()+"</div></p></div>");
+			$j("#divDlg").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='mohappointment.export.data'/>'><p><div id='result'>"+$j('#dlgCtnt').html()+"</div></p></div>");
 			$j("#dialog").dialog({
 				zIndex: 980,
 				bgiframe: true,
@@ -38,7 +38,7 @@
 		}
 		
 		function showEditWindow(pId){
-			$j("#divWindow").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='@MODULE_ID@.appointment.service.form'/>'><p><div id='result'>"+pId+"</div></p></div>");
+			$j("#divWindow").html("<div id='dialog' style='font-size: 0.9em;' title='<spring:message code='mohappointment.appointment.service.form'/>'><p><div id='result'>"+pId+"</div></p></div>");
 			$j("#dialog").dialog({
 				zIndex: 980,
 				bgiframe: true,
@@ -66,20 +66,20 @@
 
 <%@ include file="templates/serviceProviderHeader.jsp"%>
 
-<h2><spring:message code="@MODULE_ID@.appointment.service.management"/></h2>
+<h2><spring:message code="mohappointment.appointment.service.management"/></h2>
 <br/>
-<a href="service.form"><spring:message code="@MODULE_ID@.appointment.service.add"/></a>
+<a href="service.form"><spring:message code="mohappointment.appointment.service.add"/></a>
 <br/><br/>
 
 
 <div class="searchParameterBox box">
 	<div class="list_container" style="width: 99%">
 		<div class="list_title">
-			<div class="list_title_msg"><spring:message code="@MODULE_ID@.appointment.service.current"/></div>
+			<div class="list_title_msg"><spring:message code="mohappointment.appointment.service.current"/></div>
 			<div class="list_title_bts">
 			
 				<form style="display: inline;" action="#" method="post">
-					<input onclick="showExportDialog();" type="button" class="list_exportBt" value="<spring:message code="@MODULE_ID@.general.export"/>"/>
+					<input onclick="showExportDialog();" type="button" class="list_exportBt" value="<spring:message code="mohappointment.general.export"/>"/>
 				</form>	
 					
 			</div>
@@ -87,14 +87,14 @@
 		</div>
 		<table class="list_data">
 			<tr>
-				<th class="columnHeader"><spring:message code="@MODULE_ID@.general.number"/></th>
+				<th class="columnHeader"><spring:message code="mohappointment.general.number"/></th>
 				<th class="columnHeader">Name</th>
 				<th class="columnHeader">Description</th>
 				<th class="columnHeader"></th>
 			</tr>
 			<c:if test="${empty services}">
 				<tr>
-					<td colspan="3" style="text-align: center;"><spring:message code="@MODULE_ID@.general.empty"/></td>
+					<td colspan="3" style="text-align: center;"><spring:message code="mohappointment.general.empty"/></td>
 				</tr>
 			</c:if>
 			<c:forEach items="${services}" var="service" varStatus="status">
@@ -102,7 +102,7 @@
 					<td class="rowValue ${status.count%2!=0?'even':''}">${((param.page-1)*pageSize)+status.count}.</td>
 					<td class="rowValue ${status.count%2!=0?'even':''}">${service.name}</td>	
 					<td class="rowValue ${status.count%2!=0?'even':''}">${service.description}</td>
-					<td class="rowValue ${status.count%2!=0?'even':''}"><input onclick="showEditWindow('${service.serviceId}');" type="button" id="btEdit" value="<spring:message code='@MODULE_ID@.general.edit'/>"></td>
+					<td class="rowValue ${status.count%2!=0?'even':''}"><input onclick="showEditWindow('${service.serviceId}');" type="button" id="btEdit" value="<spring:message code='mohappointment.general.edit'/>"></td>
 				</tr>
 			</c:forEach>
 		</table>

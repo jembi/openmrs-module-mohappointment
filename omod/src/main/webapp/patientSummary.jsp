@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 
-<openmrs:htmlInclude file="/moduleResources/@MODULE_ID@/style/listing.css" />
+<openmrs:htmlInclude file="/moduleResources/mohappointment/style/listing.css" />
 
 <div style="width: 640;">
 	<table width="100%">

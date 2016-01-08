@@ -8,14 +8,14 @@
 	$j(document).ready(function(){
 		$j("#btEdit").click(function(){
 			if(validateFormFields()){
-				if(confirm("<spring:message code='@MODULE_ID@.general.save.confirm'/>"))
+				if(confirm("<spring:message code='mohappointment.general.save.confirm'/>"))
 					this.form.submit();
 			}
 		});
 		
 		$j("#btDelete").click(function(){
 			if(validateFormFields()){
-				if(confirm("<spring:message code='@MODULE_ID@.general.save.confirm'/>"))
+				if(confirm("<spring:message code='mohappointment.general.save.confirm'/>"))
 					this.form.submit();
 			}
 		});
@@ -51,7 +51,7 @@
 		}
 
 		if(!valid){
-			$j("#errorDiv").html("<spring:message code='@MODULE_ID@.general.fillbeforesubmit'/>");
+			$j("#errorDiv").html("<spring:message code='mohappointment.general.fillbeforesubmit'/>");
 			$j("#errorDiv").addClass("error");
 		} else {
 			$j("#errorDiv").html("");
@@ -68,14 +68,14 @@
 
 	<table>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.provider"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.provider"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><openmrs_tag:userField roles="Provider" formFieldName="provider" initialValue="${user}" /></td>
 			<td valign="top"><span id="providerError"></span></td>
 		</tr>
 		<tr> 
-			<td><b><spring:message code="@MODULE_ID@.general.service"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.service"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><select name="service" id="service">
 					<option value="">--</option>
 					<c:forEach items="${services}" var="service">
@@ -86,16 +86,16 @@
 			<td valign="top"><span id="serviceError"></span></td>
 		</tr>
 		<tr>
-			<td><b><spring:message code="@MODULE_ID@.general.startdate"/></b></td>
-			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/@MODULE_ID@/images/help.gif" title="?"/></td>
+			<td><b><spring:message code="mohappointment.general.startdate"/></b></td>
+			<td><img border="0" src="<openmrs:contextPath/>/moduleResources/mohappointment/images/help.gif" title="?"/></td>
 			<td><input value="${serviceProvider.startDate}" type="text" name="startDate" id="startDate" size="11" onclick="showCalendar(this);"/></td>
 			<td valign="top"><span id="startDateError"></span></td>
 		</tr>
 		<tr>
 			<td></td>
 			<td></td>
-			<td><input type="button" id="btEdit" value="<spring:message code='@MODULE_ID@.general.edit'/>"></td>
-			<td><input type="button" id="btDelete" value="<spring:message code='@MODULE_ID@.general.delete'/>"></td>
+			<td><input type="button" id="btEdit" value="<spring:message code='mohappointment.general.edit'/>"></td>
+			<td><input type="button" id="btDelete" value="<spring:message code='mohappointment.general.delete'/>"></td>
 		</tr>
 	</table>
 
