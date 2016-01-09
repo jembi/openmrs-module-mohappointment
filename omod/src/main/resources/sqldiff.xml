@@ -91,16 +91,16 @@
 			
 			PRIMARY KEY (`appointment_id`),
 			
-			CONSTRAINT `appointment_visit_date_obs` FOREIGN KEY (`visit_date_obs_id`) REFERENCES `obs` (`obs_id`),
-			CONSTRAINT `appointment_reason_obs` FOREIGN KEY (`reason_obs_id`) REFERENCES `obs` (`obs_id`),
-			CONSTRAINT `appointment_location` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`),
-			CONSTRAINT `appointment_provider` FOREIGN KEY (`provider_id`) REFERENCES `person` (`person_id`),
-			CONSTRAINT `appointment_service` FOREIGN KEY (`service_id`) REFERENCES `moh_appointment_service` (`service_id`),
-			CONSTRAINT `appointment_encounter` FOREIGN KEY (`encounter_id`) REFERENCES `encounter` (`encounter_id`),
-			CONSTRAINT `appointment_patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
-			CONSTRAINT `appointment_appointment_state` FOREIGN KEY (`appointment_state_id`) REFERENCES `moh_appointment_state` (`appointment_state_id`),
-			CONSTRAINT `appointment_voided_by` FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`),
-			CONSTRAINT `appointment_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`)
+			CONSTRAINT `mohappointment_visit_date_obs` FOREIGN KEY (`visit_date_obs_id`) REFERENCES `obs` (`obs_id`),
+			CONSTRAINT `mohappointment_reason_obs` FOREIGN KEY (`reason_obs_id`) REFERENCES `obs` (`obs_id`),
+			CONSTRAINT `mohappointment_location` FOREIGN KEY (`location_id`) REFERENCES `location` (`location_id`),
+			CONSTRAINT `mohappointment_provider` FOREIGN KEY (`provider_id`) REFERENCES `person` (`person_id`),
+			CONSTRAINT `mohappointment_service` FOREIGN KEY (`service_id`) REFERENCES `moh_appointment_service` (`service_id`),
+			CONSTRAINT `mohappointment_encounter` FOREIGN KEY (`encounter_id`) REFERENCES `encounter` (`encounter_id`),
+			CONSTRAINT `mohappointment_patient` FOREIGN KEY (`patient_id`) REFERENCES `patient` (`patient_id`),
+			CONSTRAINT `mohappointment_appointment_state` FOREIGN KEY (`appointment_state_id`) REFERENCES `moh_appointment_state` (`appointment_state_id`),
+			CONSTRAINT `mohappointment_voided_by` FOREIGN KEY (`voided_by`) REFERENCES `users` (`user_id`),
+			CONSTRAINT `mohappointment_creator` FOREIGN KEY (`creator`) REFERENCES `users` (`user_id`)
 			
 			) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 			
