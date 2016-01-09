@@ -73,5 +73,7 @@ nb-configuration.xml
 /webapp/src/main/webapp/WEB-INF/module_messages*
 #############
 
-omod/**
-api/**
+omod/target
+omod/.gitignore
+api/.gitignore
+api/target
