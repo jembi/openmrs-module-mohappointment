@@ -3,7 +3,7 @@
  */
 package org.openmrs.module.mohappointment.observerpattern;
 
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 
 /**
  * @author Kamonyo
@@ -11,9 +11,9 @@ import org.openmrs.module.mohappointment.model.Appointment;
  */
 public class ConcreteObserver implements IObserver {
 
-	private Appointment appointment;
+	private MohAppointment appointment;
 
-	public ConcreteObserver(Appointment appointment) {
+	public ConcreteObserver(MohAppointment appointment) {
 		this.appointment = appointment;
 		this.appointment.addObserver(this);
 	}

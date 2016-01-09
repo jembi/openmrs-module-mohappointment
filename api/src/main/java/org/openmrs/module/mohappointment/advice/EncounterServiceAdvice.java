@@ -24,7 +24,7 @@ import org.openmrs.GlobalProperty;
 import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 import org.openmrs.module.mohappointment.model.AppointmentState;
 import org.openmrs.module.mohappointment.model.Services;
 import org.openmrs.module.mohappointment.service.IAppointmentService;
@@ -81,7 +81,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 
 			GlobalProperty pcServiceRequested = Context.getAdministrationService()
 					.getGlobalPropertyObject("mohappointment.concept.primary_care_service_requested_concept");
-			Appointment appointment = null;
+			MohAppointment appointment = null;
 			
 
 			// 1. Getting the Obs associated to the encounter:
@@ -95,7 +95,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 						// Avoiding to save the Appointment many times
 						if (obs.getValueCoded() != null) {
 
-							appointment = new Appointment();
+							appointment = new MohAppointment();
 							Services serv = AppointmentUtil
 									.getServiceByConcept(obs.getValueCoded());
 
@@ -178,7 +178,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 				// Setting the parameter from the EncounterService.saveEncounter
 				// method
 				Encounter encounter = (Encounter) args[0];
-				Appointment appointment = null;
+				MohAppointment appointment = null;
 				boolean appointmentFound = false;
 				// 1. Getting the Obs associated to the encounter:
 				if (encounter.getObs() != null)
@@ -202,7 +202,7 @@ public class EncounterServiceAdvice implements AfterReturningAdvice {
 
 				if (appointmentFound) {
 
-					appointment = new Appointment();
+					appointment = new MohAppointment();
 
 					// Setting the appointment attributes
 					appointment.setPatient(encounter.getPatient());

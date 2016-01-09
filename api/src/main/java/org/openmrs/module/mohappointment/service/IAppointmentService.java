@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.openmrs.Concept;
 import org.openmrs.Person;
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 import org.openmrs.module.mohappointment.model.AppointmentState;
 import org.openmrs.module.mohappointment.model.ServiceProviders;
 import org.openmrs.module.mohappointment.model.Services;
@@ -28,14 +28,14 @@ public interface IAppointmentService {
 	 *            , the appointment to be matched
 	 * @return appointment matching the id
 	 */
-	public Appointment getAppointmentById(int appointmentId);
+	public MohAppointment getAppointmentById(int appointmentId);
 
 	/**
 	 * Gets all existing appointments.
 	 * 
 	 * @return list of all existing appointments
 	 */
-	public Collection<Appointment> getAllAppointments();
+	public Collection<MohAppointment> getAllAppointments();
 
 	/**
 	 * Saves an appointment in the database.
@@ -43,7 +43,7 @@ public interface IAppointmentService {
 	 * @param appointment
 	 *            , the appointment to be saved
 	 */
-	public void saveAppointment(Appointment appointment);
+	public void saveAppointment(MohAppointment appointment);
 
 	/**
 	 * Edits an existing appointment.
@@ -51,7 +51,7 @@ public interface IAppointmentService {
 	 * @param appointment
 	 *            , the appointment to be updated
 	 */
-	public void updateAppointment(Appointment appointment);
+	public void updateAppointment(MohAppointment appointment);
 
 	/**
 	 * Edits an existing appointment.
@@ -61,7 +61,7 @@ public interface IAppointmentService {
 	 * @param stateId
 	 *            , the stateId to be updated
 	 */
-	public void updateState(Appointment appointment, Integer stateId);
+	public void updateState(MohAppointment appointment, Integer stateId);
 
 	/**
 	 * Removes a given appointment from the database.
@@ -69,7 +69,7 @@ public interface IAppointmentService {
 	 * @param appointment
 	 *            , the appointment to be cancelled
 	 */
-	public void cancelAppointment(Appointment appointment);
+	public void cancelAppointment(MohAppointment appointment);
 
 	/**
 	 * Gets appointments IDs by entering different conditions of filtering and

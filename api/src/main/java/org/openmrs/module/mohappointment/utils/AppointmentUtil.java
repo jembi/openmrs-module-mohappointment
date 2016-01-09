@@ -19,7 +19,7 @@ import org.openmrs.GlobalProperty;
 import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 import org.openmrs.module.mohappointment.model.AppointmentState;
 import org.openmrs.module.mohappointment.model.AppointmentView;
 import org.openmrs.module.mohappointment.model.ServiceProviders;
@@ -72,7 +72,7 @@ public class AppointmentUtil {
 	 * @return view the AppointmentView
 	 */
 	public static AppointmentView convertIntoAppointmentViewObject(
-			Appointment app) {
+			MohAppointment app) {
 		Services services = null;
 
 		if (app.getReason() != null)
@@ -108,11 +108,11 @@ public class AppointmentUtil {
 	 * @return <code>views</code> the list of appointments views
 	 */
 	public static List<AppointmentView> convertIntoAppointmentViewList(
-			List<Appointment> appointments) {
+			List<MohAppointment> appointments) {
 
 		List<AppointmentView> views = new ArrayList<AppointmentView>();
 
-		for (Appointment app : appointments) {
+		for (MohAppointment app : appointments) {
 			views.add(AppointmentUtil.convertIntoAppointmentViewObject(app));
 		}
 
@@ -159,7 +159,7 @@ public class AppointmentUtil {
 			if (!request.getParameter("appointmentId").equalsIgnoreCase("")) {
 				appointmentId = Integer.valueOf(request
 						.getParameter("appointmentId"));
-				Appointment appointment = service
+				MohAppointment appointment = service
 						.getAppointmentById(appointmentId);
 
 				if (request.getParameter("cancel") != null) {
@@ -194,7 +194,7 @@ public class AppointmentUtil {
 				appointmentId = Integer.valueOf(request
 						.getParameter("appointmentId"));
 
-				Appointment appointment = service
+				MohAppointment appointment = service
 						.getAppointmentById(appointmentId);
 
 				if (request.getParameter("attended") != null) {
@@ -243,11 +243,11 @@ public class AppointmentUtil {
 	 *            the end date of the period we are trying to match
 	 * @return the list of Appointments that were matched
 	 */
-	public static List<Appointment> getTodayAppointmentsForProvider(
+	public static List<MohAppointment> getTodayAppointmentsForProvider(
 			User authUser, Date startDate, Date endDate,
 			Services selectedService) {
 
-		List<Appointment> appointments = new ArrayList<Appointment>();
+		List<MohAppointment> appointments = new ArrayList<MohAppointment>();
 		IAppointmentService ias = getAppointmentService();
 		List<Services> services = null;
 		Services servise = null;
@@ -283,10 +283,10 @@ public class AppointmentUtil {
 	 * This means the selected service is filtered amongst different services a
 	 * provider works for
 	 */
-	private static List<Appointment> getFilteredBySelectedService(
+	private static List<MohAppointment> getFilteredBySelectedService(
 			User authUser, Date startDate, Date endDate,
 			Services selectedService, IAppointmentService ias) {
-		List<Appointment> appointments;
+		List<MohAppointment> appointments;
 		List<Integer> waitingAppointmentIds = new ArrayList<Integer>();
 		Object[] conditionsWaitingAppointment = { null, null, null, startDate,
 				null, endDate, 4, selectedService.getServiceId() };
@@ -298,24 +298,24 @@ public class AppointmentUtil {
 		if (authUser.getPerson() != null) {
 			waitingAppointmentIds = ias.getAppointmentIdsByMulti(
 					conditionsWaitingAppointment, 100);
-			List<Appointment> waitingAppointments = new ArrayList<Appointment>();
+			List<MohAppointment> waitingAppointments = new ArrayList<MohAppointment>();
 			for (Integer appointmentId : waitingAppointmentIds) {
 				waitingAppointments.add(ias.getAppointmentById(appointmentId));
 			}
 
 			appointments = waitingAppointments;
 		} else
-			appointments = new ArrayList<Appointment>();
+			appointments = new ArrayList<MohAppointment>();
 		return appointments;
 	}
 
 	/**
 	 * This means the provider works in one service!
 	 */
-	private static List<Appointment> getWhereProviderWorksInOneService(
+	private static List<MohAppointment> getWhereProviderWorksInOneService(
 			User authUser, Date startDate, Date endDate,
 			IAppointmentService ias, Services servise) {
-		List<Appointment> appointments;
+		List<MohAppointment> appointments;
 
 		if ((authUser.getPerson().getPersonId().intValue() > 1))
 			servise = ias.getServiceByProvider(authUser.getPerson());
@@ -329,8 +329,8 @@ public class AppointmentUtil {
 	 * Checks whether the services is not null and there is no selected service
 	 * by the provider
 	 */
-	private static List<Appointment> getNoSelectedService(User authUser,
-			Date startDate, Date endDate, List<Appointment> appointments,
+	private static List<MohAppointment> getNoSelectedService(User authUser,
+			Date startDate, Date endDate, List<MohAppointment> appointments,
 			IAppointmentService ias, List<Services> services) {
 		List<Integer> waitingAppointmentIds = new ArrayList<Integer>();
 		for (Services serv : services) {
@@ -344,7 +344,7 @@ public class AppointmentUtil {
 			if (authUser.getPerson() != null) {
 				waitingAppointmentIds = ias.getAppointmentIdsByMulti(
 						conditionsWaitingAppointment, 100);
-				List<Appointment> waitingAppointments = new ArrayList<Appointment>();
+				List<MohAppointment> waitingAppointments = new ArrayList<MohAppointment>();
 				for (Integer appointmentId : waitingAppointmentIds) {
 					waitingAppointments.add(ias
 							.getAppointmentById(appointmentId));
@@ -355,7 +355,7 @@ public class AppointmentUtil {
 					appointments.addAll(waitingAppointments);
 				}
 			} else
-				appointments = new ArrayList<Appointment>();
+				appointments = new ArrayList<MohAppointment>();
 		}
 		return appointments;
 	}
@@ -405,7 +405,7 @@ public class AppointmentUtil {
 	 *            the appointment to be saved: this should be including setting
 	 *            all attributes.
 	 */
-	public static void saveWaitingAppointment(Appointment appointment) {
+	public static void saveWaitingAppointment(MohAppointment appointment) {
 
 		IAppointmentService service = getAppointmentService();
 
@@ -420,7 +420,7 @@ public class AppointmentUtil {
 	 *            the appointment to be saved: this should be including setting
 	 *            all attributes.
 	 */
-	public static void saveAttendedAppointment(Appointment appointment) {
+	public static void saveAttendedAppointment(MohAppointment appointment) {
 
 		IAppointmentService service = getAppointmentService();
 
@@ -436,7 +436,7 @@ public class AppointmentUtil {
 	 *            the appointment to be saved: this should be including setting
 	 *            all attributes.
 	 */
-	public static void saveUpcomingAppointment(Appointment appointment) {
+	public static void saveUpcomingAppointment(MohAppointment appointment) {
 
 		IAppointmentService service = getAppointmentService();
 
@@ -451,7 +451,7 @@ public class AppointmentUtil {
 	 *            the ID to be matched.
 	 * @return the appointment corresponding to the given ID
 	 */
-	public static Appointment getWaitingAppointmentById(int id) {
+	public static MohAppointment getWaitingAppointmentById(int id) {
 
 		IAppointmentService service = getAppointmentService();
 
@@ -520,17 +520,17 @@ public class AppointmentUtil {
 	 *            the date to be matched, if not provided, just pass null
 	 * @return all appointments that match the conditions
 	 */
-	public static List<Appointment> getAppointmentsByPatientAndDate(
+	public static List<MohAppointment> getAppointmentsByPatientAndDate(
 			Patient patient, Services clinicalService, Date date) {
 
 		IAppointmentService service = getAppointmentService();
 		Object[] conditions = { patient.getPatientId(), null, null, date, null,
 				null, null, null };
-		List<Appointment> appointments = new ArrayList<Appointment>();
+		List<MohAppointment> appointments = new ArrayList<MohAppointment>();
 
 		if (clinicalService != null) {
 			for (Integer id : service.getAppointmentIdsByMulti(conditions, 100)) {
-				Appointment app = service.getAppointmentById(id);
+				MohAppointment app = service.getAppointmentById(id);
 				if (app.getService().equals(clinicalService))
 					appointments.add(app);
 			}

@@ -9,7 +9,7 @@ import java.util.List;
 import org.openmrs.Concept;
 import org.openmrs.Person;
 import org.openmrs.module.mohappointment.db.AppointmentDAO;
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 import org.openmrs.module.mohappointment.model.AppointmentState;
 import org.openmrs.module.mohappointment.model.ServiceProviders;
 import org.openmrs.module.mohappointment.model.Services;
@@ -32,19 +32,19 @@ public class AppointmentService implements IAppointmentService {
 	}
 
 	@Override
-	public void cancelAppointment(Appointment appointment) {
+	public void cancelAppointment(MohAppointment appointment) {
 
 		appointmentDAO.cancelAppointment(appointment);
 	}
 
 	@Override
-	public Collection<Appointment> getAllAppointments() {
+	public Collection<MohAppointment> getAllAppointments() {
 
 		return appointmentDAO.getAllAppointments();
 	}
 
 	@Override
-	public Appointment getAppointmentById(int appointmentId) {
+	public MohAppointment getAppointmentById(int appointmentId) {
 
 		return appointmentDAO.getAppointmentById(appointmentId);
 	}
@@ -68,19 +68,19 @@ public class AppointmentService implements IAppointmentService {
 	}
 
 	@Override
-	public void saveAppointment(Appointment appointment) {
+	public void saveAppointment(MohAppointment appointment) {
 
 		appointmentDAO.saveAppointment(appointment);
 	}
 
 	@Override
-	public void updateAppointment(Appointment appointment) {
+	public void updateAppointment(MohAppointment appointment) {
 
 		appointmentDAO.updateAppointment(appointment);
 	}
 
 	@Override
-	public void updateState(Appointment appointment, Integer stateId) {
+	public void updateState(MohAppointment appointment, Integer stateId) {
 
 		appointmentDAO.updateAppointment(appointment);
 	}

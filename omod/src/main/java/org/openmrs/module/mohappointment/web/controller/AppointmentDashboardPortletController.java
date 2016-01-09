@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.openmrs.Patient;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.mohappointment.model.Appointment;
+import org.openmrs.module.mohappointment.model.MohAppointment;
 import org.openmrs.module.mohappointment.service.IAppointmentService;
 import org.openmrs.module.mohappointment.utils.AppointmentUtil;
 import org.openmrs.web.controller.PortletController;
@@ -46,7 +46,7 @@ public class AppointmentDashboardPortletController extends PortletController {
 
 			List<Integer> appointmentIds = ias.getAppointmentIdsByMulti(
 					conditions, 100);
-			List<Appointment> appointments = new ArrayList<Appointment>();
+			List<MohAppointment> appointments = new ArrayList<MohAppointment>();
 			for (Integer appointmentId : appointmentIds) {
 				appointments.add(ias.getAppointmentById(appointmentId));
 			}
